@@ -1,133 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"itle>Swift Kart</title>
+  <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Swift Kart</title>
 
-<style>
-
-        body {
-    background-color: #F0F2F2;
-    font-family: 'Arial', sans-serif;
-    color: #0F1111;
+  <link rel="stylesheet" href="css/styleh.css">
+  <style>*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, Helvetica, sans-serif;
 }
 
-.cart-container {
-    display: flex;
-    max-width: 1200px;
-    margin: 20px auto;
-    gap: 20px;
+body{
+  background: linear-gradient(180deg,#b2f7eb ,#4eb9f2 );
+  overflow-x:hidden;
+  padding-bottom:80px; /* space for footer */
 }
 
-.cart-main {
-    flex: 3;
-    background: white;
-    padding: 20px;
+/* HEADER / NAVBAR */
+.head{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  height:70px;
+ 
 }
 
-.cart-sidebar {
-    flex: 1;
-    background: white;
-    padding: 20px;
-    height: fit-content;
+.head img{
+  height:50px;
+  border-radius:50%;
 }
 
-.cart-item {
-    display: flex;
-    padding: 15px 0;
-    border-bottom: 1px solid #DDD;
+.head p{
+  font-weight:bold;
+  color:black;
 }
 
-.item-img img { width: 150px; height: auto; }
-
-.item-details { flex: 2; padding: 0 20px; }
-
-.stock-status { color: #007600; font-size: 12px; }
-
-.qty-dropdown {
-    background: #F0F2F2;
-    border-radius: 8px;
-    border: 1px solid #D5D9D9;
-    padding: 5px;
-    box-shadow: 0 2px 5px rgba(15,17,17,.15);
+/* SEARCH BAR */
+.Nav-bar{
+  background:#1976d2;
+  padding:12px;
 }
 
-.text-btn {
-    background: none;
-    border: none;
-    color: #007185;
-    cursor: pointer;
-    font-size: 12px;
+.sorch{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(90deg,#31ffff,#ff90cc);
+  padding:10px;
+  border-radius:10px;
 }
 
-.text-btn:hover { text-decoration: underline; color: #C7511F; }
-
-.checkout-btn {
-    background-color: #FF9900; /* Swift Orange */
-    border: none;
-    border-radius: 20px;
-    width: 100%;
-    padding: 10px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
+.search{
+  width:100%;
+  max-width:500px;
+  height:40px;
+  border-radius:20px;
+  border:none;
+  padding-left:15px;
 }
 
-.checkout-btn:hover { background-color: #FFB33E; }
+.buttonsearch{
+  height:40px;
+  padding:0 15px;
+  border:none;
+  background:#e0e0e0;
+  border-radius:20px;
+  margin-left:-40px;
+  cursor:pointer;
+}
 
-    
-</style>
+/* CATEGORIES */
+.categories{
+  padding:10px;
+}
+
+.categories ul{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+  list-style:none;
+}
+
+.categories a{
+  text-decoration:none;
+  background:#fff;
+  padding:6px 12px;
+  border-radius:15px;
+  border:1px solid #ddd;
+  font-size:14px;
+  color:#333;
+}
+
+/* MAIN PRODUCTS */
+.main{
+  padding:10px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:10px;
+}
+
+.section-title{
+  grid-column:1/-1;
+  font-size:16px;
+  font-weight:bold;
+}
+
+/* PRODUCT CARDS */
+.ad-card{
+  background:#fff;
+  border-radius:10px;
+  overflow:hidden;
+  height:140px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.ad-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* FOOTER NAVBAR */
+.navbarfooter{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  background:#1a1a1a;
+  padding:8px 0;
+  z-index:1000;
+}
+
+.navbartext ul{
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  list-style:none;
+}
+
+/* NORMAL ICON */
+.lia a{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:45px;
+  width:45px;
+  border-radius:50%;
+  transition:0.3s;
+}
+
+.lia a:hover{
+  background:#333;
+  transform:translateY(-3px);
+}
+
+.lia img{
+  width:22px;
+  height:22px;
+}
+
+/* CENTER ICON (HOME) */
+.liam a{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:55px;
+  width:55px;
+  border-radius:50%;
+  background:#ffca28;
+  box-shadow:0 0 15px rgba(255,255,255,0.6);
+  transform:translateY(-10px);
+}
+
+.liam img{
+  width:28px;
+  height:28px;
+}
+
+/* MOBILE OPTIMIZATION */
+@media(max-width:768px){
+  .search{
+    max-width:90%;
+  }
+
+  .head{
+    flex-direction:row;
+  }
+
+  .categories a{
+    font-size:12px;
+  }
+}</style>
 </head>
-
 <body>
 
-<!-- NAVBAR -->
-<div class="navbar">
-  <div class="logo">
-    <img src="https://image2url.com/r2/default/images/1775795696466-c055581b-e5e5-4386-8fe8-043853054e4c.jpg">
-    <span>SwiftKart</span>
-  </div>
+  <!-- Top search + categories like your sketch -->
+   <header>
+    <div class="head">
+      <a href="#"> <img src="https://image2url.com/r2/default/images/1775795696466-c055581b-e5e5-4386-8fe8-043853054e4c.jpg" alt="SwiftKart Logo"> 
+      <p class="head">
+          SwiftKart.com
+        </p>
+      </a>
+     
+    </div>
+    <div class="Nav-bar">
+      <div class="sorch">
+        <input type="text" class="search" placeholder="Search for groceries...">
+        <button class="buttonsearch">Search</button>
+      </div>
+    </div>
+  </header>
+    <div class="categories">
+      <ul>
+        <li><a href="#electronics">Electronics</a></li>
+        <li><a href="#stationary">Stationary</a></li>
+        <li><a href="#smartphones">Smartphones</a></li>
+        <li><a href="#watches">Watches</a></li>
+        <li><a href="#new">New arrivals</a></li>
+        <li><a href="#trend">Trend</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Center ad / product blocks arranged like boxes in drawing -->
+  <main class="main">
+    <h4 class="section-title">New arrivals</h4>
+
+    <div class="ad-card">
+      <a href="http://localhost:8158/c000003.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGuQt4B0GVwQANca8STyavTDVj3-y7P-chLLwSMNJv0w&s=10" alt="Ad 1"></a>
+    </div>
+    <div class="ad-card">
+      <img src="content://com.android.externalstorage.documents/tree/primary%3ADocuments%2FHTML%20Editor/document/primary%3ADocuments%2FHTML%20Editor%2Fswift%20kart%2F1767191970095.jpg" alt="Ad 2">
+    </div>
+    <div class="ad-card">
+      <img src="" alt="Ad 3">
+    </div>
+    <div class="ad-card">
+      <img src="" alt="Ad 4">
+    </div>
+    <div class="ad-card">
+      <img src="" alt="Ad 5">
+    </div>
+  </main>
+
+  <!-- Right icon sidebar like in your paper design -->
+ 
+<footer>
+<div class="navbarfooter">
+<nav class="navbartext">
+<ul>
+<li class="lia"><a href="food.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIifF9GgvosnzUjrNbaEdRKrfdSXeJb3AVIvEqqmftLw&s=10" alt="FOOD"></a></li>
+<li class="lia"><a href="groceries.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTaIOyq3AWzuvn8S6iOrGFZ1Jnv1AD_hRwaFgq1qV-Rw&s=10" alt="GROCERIES"></a></li>
+<li class="liam"><a href="home.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf-JMvr3Uh9DTltPNMHu83lnVTq86Lq2IdIZbq-BMBNw&s=10" alt="HOME"></a></li>
+<li class="lia"><a href="maintain.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbxXVu7mGdIJJRr-Em0fG6TOXqomec17mzzjTPtllZQ9wl9Ypo3zygIY0&s=10" alt="ACCESSORIES"></a></li>
+<li class="lia"><a href="setting.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrRfHJty5oxy8Lcc8YThpGKHkpFCEe01kS7ylGVxMaoQ&s=10" alt="SETTING"></a></li>
+</ul>
+</nav>
 </div>
-
-<!-- SEARCH -->
-<div class="search-box">
-  <input type="text" placeholder="Search...">
-  <button>Search</button>
-</div>
-
-<!-- CATEGORIES -->
-<div class="categories">
-  <a href="#">Electronics</a>
-  <a href="#">Stationary</a>
-  <a href="#">Smartphones</a>
-  <a href="#">Watches</a>
-</div>
-
-<!-- PRODUCTS -->
-<div class="main">
-  <div class="card">
-    <a href="c000003.html">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGuQt4B0GVwQANca8STyavTDVj3-y7P-chLLwSMNJv0w&s=10">
-    </a>
-  </div>
-
-  <div class="card">
-    <img src="https://via.placeholder.com/150">
-  </div>
-
-  <div class="card">
-    <img src="https://via.placeholder.com/150">
-  </div>
-</div>
-
-<!-- FOOTER -->
-<div class="footer">
-  <ul>
-    <li><a href="food.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIifF9GgvosnzUjrNbaEdRKrfdSXeJb3AVIvEqqmftLw&s=10"></a></li>
-    <li><a href="groceries.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTaIOyq3AWzuvn8S6iOrGFZ1Jnv1AD_hRwaFgq1qV-Rw&s=10"></a></li>
-    <li><a href="home.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf-JMvr3Uh9DTltPNMHu83lnVTq86Lq2IdIZbq-BMBNw&s=10"></a></li>
-  </ul>
-</div>
-
+</footer>
 </body>
 </html>
