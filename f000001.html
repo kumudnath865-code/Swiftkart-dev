@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+</head>
+<body>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(180deg, #b2f7eb 0%, #4eb9f2 100%);
+    }
+
+    .carousel-container {
+      display: flex;
+      gap: 15px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+    
+
+    }
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .carousel-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .carousel-item {
+      flex: 0 0 200px;
+      background: none;
+      border-radius: 10px;
+      overflow: hidden;
+      gap: 10px; 
+      height: 300px;
+      width: 200px;
+    }
+    .carousel-item img {
+      width: 200px;
+      height: 300px;
+      margin-left: 10%;
+      margin-right: 20%;
+      margin-top: 50px;
+      object-fit: cover;
+      gap: 2px;
+    }
+    .carousel-item img:hover {
+      border-style: groove;
+      border-color: #8df7d2;
+      background: #8df7d2;
+      border-width: thin;
+      /* Horizontal offset | Vertical offset | Blur radius | Spread | Color */
+      box-shadow: 0px 9px 90px #8df7d2;
+
+      /* Optional: Smoothly lifts the element slightly */
+      transform: translateY(2px);
+      transition: all 0.1s ease;
+    }
+    .details-section {
+      padding-left: 15px;
+      flex-grow: 10;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-size: 25px;
+      text-transform: uppercase;
+      color: #f2e4f8;
+      letter-spacing: 0.5px;
+    }
+
+    .item-name {
+      font-size: 20px;
+      color: #f4fff;
+      margin: 2px 0;
+      font-weight: 600;
+    }
+
+    .weight {
+      font-size: 23px;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .price-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .price {
+      font-size: 25px;
+      font-weight: 700;
+      color: #000;
+    }
+
+    .mrp {
+      font-size: 15px;
+      text-decoration: line-through;
+      color: grey;
+    }
+
+    /* Action Button */
+    .add-btn {
+      position: static;
+      bottom: 10px;
+      right: 52px;
+    }
+    .add-btn1 {
+      height: 40px;
+      width: 49%;
+      justify-content: left;
+      background-color: #fff;
+      color: #5cd6f7;
+      /* Meesho-style pink/red */
+      border: 1px solid #5cd6f7;
+      padding: 6px 20px;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .add-btn2 {
+      height: 40px;
+      width: 49%;
+      justify-content: right;
+      background-color: #fff;
+      color: #5cd6f7;
+      /* Meesho-style pink/red */
+      border: 1px solid #5cd6f7;
+      padding: 6px 20px;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .add-btn1:hover {
+      background-color: #fd9925;
+      color: #fff;
+    }
+    .add-btn2:hover {
+      background-color: #42d4f5;
+      color: #ffff;
+    }
+  </style>
+  <header>
+    <div style="padding: 10px;">
+      <a href="http://localhost:8158/groceries.html" style="text-decoration: none; color: #000; font-weight: bold;"> ← Back to Groceries</a>
+    </div>
+
+    <div class="carousel-container">
+      <div class="carousel-item">
+        <a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdIqLI4Q_10lWAUlf5IEa8C6KQgP20mFS381q-_5xyhSITuOtdqBnIzPnj&s=10">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdIqLI4Q_10lWAUlf5IEa8C6KQgP20mFS381q-_5xyhSITuOtdqBnIzPnj&s=10" alt="image"></a>   
+      </div>
+      <div class="carousel-item">
+        <a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmUYYw-9bYdZZ8v2BdUa73j9nXQ9tUuTRbzZ3vljkhyQ&s=10">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmUYYw-9bYdZZ8v2BdUa73j9nXQ9tUuTRbzZ3vljkhyQ&s=10" alt="Deal 2">
+        </a>
+      </div>
+      <div class="carousel-item">
+        <a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSe2kIpVYu3D4QDX0bhlcmAhF_a92mGrwZC-1xj77z7A&s=10">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSe2kIpVYu3D4QDX0bhlcmAhF_a92mGrwZC-1xj77z7A&s=10"
+        alt="Deal 3"></a>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="details-section">
+      <p class="brand-name">
+        everyday spices
+      </p>
+      <h3 class="item-name">Masala set (pack of 4)</h3>
+      <div class="price-box">
+        <span class="price">₹39</span>
+        <span class="mrp">₹40</span>
+      </div>
+      <p class="weight">
+        Net Qty: 4
+       <br>
+        Net weight: 8g
+      </p>
+    
+    </div>
+  </main>
+  <footer>
+  <div class="add-btn">
+        <a href="#">
+          <button class="add-btn1">BUY NOW</button>
+        </a>
+        <a href="http://localhost:8158/Cart.html">
+          <button class="add-btn2">ADD TO CART</button>
+        </a>
+      </div>
+  </footer>
+</body>
+</html>
+ 

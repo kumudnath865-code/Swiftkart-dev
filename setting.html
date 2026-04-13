@@ -1,0 +1,237 @@
+<footer><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Settings">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" href="http://localhost:8158/f000002.html">
+    <title>SETTING</title>
+    <style>
+        /* Minimal CSS Reset */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: system-ui, sans-serif; 
+        min-height: 100vh;
+        line-height: 1.6; 
+          background: linear-gradient(180deg, #b2f7eb 0%, #4eb9f2 100%);
+        }
+         /* HEADER */
+    .head {
+      height: 70px;
+      background: linear-gradient(90deg, #b2f7eb, #4eb9f2, #b2f7eb);
+      color:transparent;
+     
+    }
+
+    .head img {
+      margin-left: 45%;
+      justify-content: right;
+      height: 55px;
+      border-radius: 50%;
+    }
+    .head:hover{
+      box-shadow: 2px 1px 5px #ffdd41;
+
+      /* Optional: S moothly lifts the element slightly */
+      transform: translateY(2px);
+      transition: all 0.1s ease;
+      transform: none;
+      background-image: url("https://image2url.com/r2/default/images/1775795696466-c055581b-e5e5-4386-8fe8-043853054e4c.jpg") height:100px ;width: 100%;
+      ;
+      
+    }
+    .head img:hover {
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 2px 1px 5px #ffdd41;
+
+      /* Optional: S moothly lifts the element slightly */
+      transform: translateY(2px);
+      transition: all 0.1s ease;
+      transform: none;
+      height: 80px;
+      width: 80px;
+    }
+    .head1{
+      color: transparent;
+    }
+    .head1:hover {
+      color:black;
+      border-radius: 20px;
+      text-align: center;
+     
+    }
+.sEARCH BAR
+    .Nav-bar {
+      text-align: center;
+      background-color: #1976d2;
+      padding: 15px;
+      box-shadow: 2px 1px 45px black;
+
+      /* Optional: Smoothly lifts the element slightly */
+      transform: translateY(2px);
+      transition: all 0.2s ease;
+    }
+
+    .sorch {
+      /* This is your outer container with the black border */
+      height: 60px;
+      /* Increased slightly for breathing room */
+      margin: 50px 10px;
+      border: 2px groove black;
+      display: flex;
+      align-items: center;
+      /* This centers the search bar vertically */
+      justify-content: center;
+      /* This keeps the search bar horizontally centered */
+      background: linear-gradient(90deg,#31ffff 0%, #ff90cc 100%);
+
+    }
+    .sorch:hover {
+      background-color: white;
+      box-shadow: 2px 1px 45px white;
+
+      /* Optional: Smoothly lifts the element slightly */
+      transform: translateY(2px);
+      transition: all 0.2s ease;
+      background-color: white;
+    }
+    .search {
+      height: 40px;
+      width: 75%;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      /* A light border makes the input stand out */
+      padding-left: 20px;
+      outline: none;
+      /* Prevents double-border when typing */
+
+    }
+    .buttonsearch:hover {
+      box-shadow: 4px 2px 25.5px white;
+
+      /* Optional: Smoothly lifts the element slightly */
+      transform: translateY(2px);
+      transition: all 0.2s ease;
+    }
+    .buttonsearch {
+      height: 40px;
+      padding: 0 20px;
+      border: none;
+      background-color: #e0e0e0;
+      color: #333;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-left: -45px;
+      /* Pulls button inside the search bar */
+      z-index: 1;
+      /* Ensures button stays on top of the input */
+    }
+
+            /* FOOTER */
+    .navbarfooter {
+      background-color: #1a1a1a;
+      padding: 20px;
+    }
+
+    .navbartext ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      /* Keeps everything vertically centered */
+      padding: 0;
+      margin: 0;
+    }
+
+    .lia a {
+      text-decoration: none;
+      color: #ffca28;
+      font-size: 14px;
+      display: flex;
+      /* Essential for centering icons inside the circle */
+      align-items: center;
+      justify-content: center;
+      height: 50px;
+      /* Move height/width here for a smooth transition */
+      width: 50px;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .lia a:hover {
+      background-color: darkgrey;
+      box-shadow: 0px 0px 20px 5px rgba(255, 255, 255, 0.6);
+      /* Softer white glow */
+
+      /* Pushes the icon UP slightly */
+      transform: translateY(-5px);
+    }
+    /* Ensure images inside don't break the circle */
+    .lia a img {
+      width: 25px;
+      height: 25px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+    .liam a{
+      text-decoration: circle;
+      color: #ffca28;
+      font-size: 10px;
+      display: flex;
+      /* Essential for centering icons inside the circle */
+      align-items: center;
+      justify-content: center;
+      height: 50px;
+      /* Move height/width here for a smooth transition */
+      width: 50px;
+      border-radius: 80%;
+      background-color:  #ffca28;
+      box-shadow: 1px 1px 20px 10px hsl(200,13%,95.5%);
+      /* Softer white glow */
+
+      /* Pushes the icon UP slightly */
+      transform: translateY(0px);
+    }
+    .liam a img{
+      width: 25px;
+      height: 25px;
+      object-fit: contain;
+      border-radius: 30%;
+    }
+    </style>
+</head>
+<body>
+    <header>
+    <div class="head">
+      <a href="#"> <img src="https://image2url.com/r2/default/images/1775795696466-c055581b-e5e5-4386-8fe8-043853054e4c.jpg" alt="SwiftKart Logo"> 
+      <p class="head1">
+          SwiftKart.com
+        </p>
+      </a>
+     
+    </div>
+    <div class="Nav-bar">
+      <div class="sorch">
+        <input type="text" class="search" placeholder="Search for setting...">
+        <button class="buttonsearch">Search</button>
+      </div>
+    </div>
+  </header>
+  
+<div class="navbarfooter">
+<nav class="navbartext">
+<ul>
+<li class="lia"><a href="http://localhost:8158/food.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIifF9GgvosnzUjrNbaEdRKrfdSXeJb3AVIvEqqmftLw&s=10" alt="FOOD"></a></li>
+<li class="lia"><a href="http://localhost:8158/groceries.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTaIOyq3AWzuvn8S6iOrGFZ1Jnv1AD_hRwaFgq1qV-Rw&s=10" alt="GROCERIES"></a></li>
+<li class="lia"><a href="http://localhost:8158/home.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf-JMvr3Uh9DTltPNMHu83lnVTq86Lq2IdIZbq-BMBNw&s=10" alt="HOME"></a></li>
+<li class="lia"><a href="http://localhost:8158/maintain.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbxXVu7mGdIJJRr-Em0fG6TOXqomec17mzzjTPtllZQ9wl9Ypo3zygIY0&s=10" alt="ACCESSORIES"></a></li>
+<li class="liam"><a href="http://localhost:8158/setting.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrRfHJty5oxy8Lcc8YThpGKHkpFCEe01kS7ylGVxMaoQ&s=10" alt="SETTING"></a></li>
+</ul>
+</nav>
+</div>
+</footer>
+</body>
+</html>

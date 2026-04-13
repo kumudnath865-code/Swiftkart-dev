@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+</head>
+<body>
+<button id="googletologin">
+  sign in with google
+</button>
+ <button id="logout" style="display: none">logout</button>
+<div id="userinfo">not logged in</div>
+<script type="module" src="app.js">import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+import { 
+  getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged 
+} from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+
+// TODO: paste your config from Firebase console
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  appId: "YOUR_APP_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+const loginBtn = document.getElementById("googleLogin");
+const logoutBtn = document.getElementById("logout");
+const userInfo = document.getElementById("userInfo");
+
+loginBtn.onclick = async () => {
+  try {
+    const result = await signInWithPopup(auth, provider);
+    console.log("Logged in:", result.user.email);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+logoutBtn.onclick = () => signOut(auth);
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    userInfo.textContent = `Hello, ${user.displayName} (${user.email})`;
+    loginBtn.style.display = "none";
+    logoutBtn.style.display = "inline-block";
+  } else {
+    userInfo.textContent = "Not logged in";
+    loginBtn.style.display = "inline-block";
+    logoutBtn.style.display = "none";
+  }
+});</script>
+</body>
+</html>

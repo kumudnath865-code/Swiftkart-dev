@@ -1,0 +1,109 @@
+*{
+  margin: 0;
+  paing: 0;
+}  
+/*fornts from google*/
+@import url: (https://fonts.google.com/specimen/Poppins?preview.text=Whereas%20recognition%20of%20the%20inherent%20dignity) ;
+
+.nav-bar{
+  display: flex;
+}
+
+.nav-list{
+  width: 50%;
+  background-colour: black;
+  display: flex;
+  text-align: bottom;
+    
+}
+
+.hover{
+  text-align: bottom;
+  with: medium;
+  style: groove;
+  colour:##0081ff;
+
+}
+
+.nav-list li a{
+  text-align: left,right;
+}
+.right-nav{
+  text-align: center;
+  with: medium;
+  style: groove;
+  colour:##0081ff;
+}
+  
+
+.sidebar wrapper {
+-list-gap: 8.5rem;
+
+display: flex;
+
+flex-flow: column;
+
+gap: var(-list-gap);
+
+sidebar_list (
+
+margin: 0;
+
+padding: 0;
+
+list-style: none;
+
+display: flex;
+
+flex-flow: column;
+
+gap: 0.125rem;
+
+overflow: hidden;
+
+}
+
+sidebar_item {
+  block-size: var(-item);
+  border-radius: var(--brad-inner);
+}
+
+.item-heading {
+  display: flex;
+  align-items: end;
+}
+:root {
+  --list-gap: 0.85rem;      /* gap between list items */
+  --item-size: 2.4rem;      /* example size for block-size */
+  --brad-inner: 0.5rem;     /* inner border radius */
+}
+
+/* wrapper for the whole sidebar */
+.sidebar-wrapper {
+  display: flex;
+  flex-flow: column;
+  gap: var(--list-gap);
+}
+
+/* the list inside the sidebar */
+.sidebar_list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: column;
+  gap: 0.125rem;
+  overflow: hidden;
+}
+
+/* each item */
+.sidebar_item {
+  block-size: var(--item-size);
+  border-radius: var(--brad-inner);
+}
+
+/* heading area inside sidebar (optional) */
+.item-heading {
+  display: flex;
+  align-items: flex-end;
+}

@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Groceries (SwiftKart)</title>
+
+  <style>
+    /* GENERAL STYLES */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(180deg, #b2f7eb 0%, #4eb9f2 100%);
+    }
+
+    /* HEADER */
+    .head {
+      height: 70px;
+      background: linear-gradient(90deg, #b2f7eb, #4eb9f2, #b2f7eb);
+      color:transparent;
+     
+    }
+
+    .head img {
+      margin-left: 45%;
+      justify-content: right;
+      height: 55px;
+      border-radius: 50%;
+    }
+    .head :hover {
+      color:black;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 2px 1px 5px #ffdd41;
+
+      /* Optional: S moothly lifts the element slightly */
+      transform: translateY(2px);
+      transition: all 0.1s ease;
+      transform: none;
+    }
+.sEARCH BAR
+    .Nav-bar {
+      text-align: center;
+      background-color: #1976d2;
+      padding: 15px;
+      box-shadow: 2px 1px 45px black;
+
+      /* Optional: Smoothly lifts the element slightly */
+      transform: translateY(2px);
+      transition: all 0.2s ease;
+    }
+
+    .sorch {
+      /* This is your outer container with the black border */
+      height: 60px;
+      /* Increased slightly for breathing room */
+      margin: 50px 10px;
+      border: 2px groove black;
+      display: flex;
+      align-items: center;
+      /* This centers the search bar vertically */
+      justify-content: center;
+      /* This keeps the search bar horizontally centered */
+      background: linear-gradient(90deg,#31ffff 0%, #ff90cc 100%);
+
+    }
+    .sorch:hover {
+      background-color: white;
+      box-shadow: 2px 1px 45px white;
+
+      /* Optional: Smoothly lifts the element slightly */
+      transform: translateY(2px);
+      transition: all 0.2s ease;
+      background-color: white;
+    }
+    .search {
+      height: 40px;
+      width: 75%;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      /* A light border makes the input stand out */
+      padding-left: 20px;
+      outline: none;
+      /* Prevents double-border when typing */
+
+    }
+    .buttonsearch:hover {
+      box-shadow: 4px 2px 25.5px white;
+
+      /* Optional: Smoothly lifts the element slightly */
+      transform: translateY(2px);
+      transition: all 0.2s ease;
+    }
+    .buttonsearch {
+      height: 40px;
+      padding: 0 20px;
+      border: none;
+      background-color: #e0e0e0;
+      color: #333;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-left: -45px;
+      /* Pulls button inside the search bar */
+      z-index: 1;
+      /* Ensures button stays on top of the input */
+    }
+
+
+    /* CATEGORY SECTION */
+    .cate {
+      background-color:;
+      padding: 20px 10px;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 1px;
+    }
+    .cateo {
+      background-color:;
+      padding: 10px 1px;
+      margin-top: 1px;
+      border-bottom: 1px solid #ddd;
+    }
+    .box {
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: space-evenly;
+      list-style: none;
+    }
+
+    .box li {
+      text-align: center;
+    }
+
+    .box li a {
+      text-decoration: none;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .box li img {
+      width: 50px;
+      height: 50px;
+      background: #e3f2fd;
+      padding: 10px;
+      border-radius: 50%;
+      margin-bottom: 5px;
+      transition: transform 0.2s;
+    }
+
+    .box li img:hover {
+      transform: scale(1.1);
+      box-shadow: 2px 1px 45px grey;
+
+      /* Optional: Smoothly lifts the element slightly */
+      transform: translateY(2px);
+      transition: all 0.0s ease;
+      background-color: white;
+      border-radius: 40%;
+      height: 59px;
+      width: 60px;
+    }
+
+    .box li span {
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* HERO SECTION */
+    .text {
+      width: 100%;
+      min-height: 250px;
+      color: white;
+      padding: 20px;
+      /*<!-- background-size: cover;
+  background-position: center; -->*/
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+
+    .deal {
+      background-color: rgba(0,0,0,0.6);
+      text-align: center;
+      padding: 10px;
+      border-radius: 5px;
+      width: fit-content;
+      margin: 0 auto 20px auto;
+    }
+    .deal:hover {
+      box-shadow: 2px 1px 45px lightgrey;
+
+      /* Optional: Smoothly lifts the element slightly */
+      transform: translateY(2px);
+      transition: all 0.2s ease;
+      background-color: #05f7bb;
+      border-width: 2px;
+      border-style: inset;
+      border-color: #15eda2;
+      border-radius: 50px;
+    }
+    /* CAROUSEL */
+    .carousel-container {
+      display: flex;
+      gap: 15px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+
+    }
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .carousel-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .carousel-item {
+      flex: 0 0 250px;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .carousel-itemb img{
+      flex: 0 10 100px;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-left: 20px;
+    }
+    .carousel-item img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+    /* FEATURED */
+    .Featured {
+      margin-top: 10px;
+
+      padding: 20px 10px;
+    }
+    .fee:hover {
+      background-color: #05f7bb;
+      border-width: 2px;
+      border-style: inset;
+      border-color: #15eda2;
+      border-radius: 50px;
+
+      /* Horizontal offset | Vertical offset | Blur radius | Spread | Color */
+      box-shadow: 9px 4px 30px #8df7d2;
+
+      /* Optional: Smoothly lifts the element slightly */
+      transform: translateY(2px);
+      transition: all 0.1s ease;
+    }
+
+    .fee {
+      text-align: center;
+      background: blur;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 80px;
+      color: #0d47a1;
+    }
+
+    /* FOOTER */
+    .navbarfooter {
+      background-color: #1a1a1a;
+      padding: 20px;
+    }
+
+    .navbartext ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      /* Keeps everything vertically centered */
+      padding: 0;
+      margin: 0;
+    }
+
+    .lia a {
+      text-decoration: none;
+      color: #ffca28;
+      font-size: 14px;
+      display: flex;
+      /* Essential for centering icons inside the circle */
+      align-items: center;
+      justify-content: center;
+      height: 50px;
+      /* Move height/width here for a smooth transition */
+      width: 50px;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .lia a:hover {
+      background-color: darkgrey;
+      box-shadow: 0px 0px 20px 5px rgba(255, 255, 255, 0.6);
+      /* Softer white glow */
+
+      /* Pushes the icon UP slightly */
+      transform: translateY(-5px);
+    }
+    /* Ensure images inside don't break the circle */
+    .lia a img {
+      width: 25px;
+      height: 25px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+    .liam a{
+      text-decoration: circle;
+      color: #ffca28;
+      font-size: 10px;
+      display: flex;
+      /* Essential for centering icons inside the circle */
+      align-items: center;
+      justify-content: center;
+      height: 50px;
+      /* Move height/width here for a smooth transition */
+      width: 50px;
+      border-radius: 80%;
+      background-color:  #ffca28;
+      box-shadow: 1px 1px 20px 10px hsl(200,13%,95.5%);
+      /* Softer white glow */
+
+      /* Pushes the icon UP slightly */
+      transform: translateY(0px);
+    }
+    .liam a img{
+      width: 25px;
+      height: 25px;
+      object-fit: contain;
+      border-radius: 30%;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .grocery-container {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    .grocery-card {
+      background: #fff;
+      display: flex;
+      padding: 12px;
+      margin-bottom: 10px;
+      border-radius: 50px;
+      position: relative;
+      border: 1px solid #e0e0e0;
+    }
+    .grocery-card:hover {
+      /* Horizontal offset | Vertical offset | Blur radius | Spread | Color */
+      border-width: 2px;
+      border-style: solid;
+      border-color: #01dd58;
+      border-radius: 10px;
+      box-shadow: 4px 2px 40px #01dd58;
+
+      /* Optional: Smoothly lifts the element slightly */
+      transform: translateY(2px);
+      transition: all 0.1s ease;
+    }
+    /* Image Styling */
+    .image-section {
+      width: 100px;
+      height: 100px;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .image-section img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .veg-icon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: #0f8a10;
+      /* Green veg dot */
+      font-size: 12px;
+      border: 1px solid #0f8a10;
+      padding: 0 2px;
+      line-height: 1;
+      background: white;
+    }
+   .non-veg-icon{
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: #ea0000;
+      /* Green veg dot */
+      font-size: 12px;
+      border: 1px solid#ea0000;
+      padding: 0 2px;
+      line-height: 1;
+      background: #e0f7fd;
+   }
+    /* Content Styling */
+    .details-section {
+      padding-left: 15px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: #888;
+      letter-spacing: 0.5px;
+    }
+
+    .item-name {
+      font-size: 15px;
+      color: #222;
+      margin: 2px 0;
+      font-weight: 600;
+    }
+
+    .weight {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .price-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .price {
+      font-size: 16px;
+      font-weight: 700;
+      color: #000;
+    }
+
+    .mrp {
+      font-size: 13px;
+      text-decoration: line-through;
+      color: #999;
+    }
+
+    /* Action Button */
+    .add-btn {
+      position: absolute;
+      bottom: 12px;
+      right: 52px;
+      background-color: #fff;
+      color: #5cd6f7;
+      /* Meesho-style pink/red */
+      border: 1px solid #5cd6f7;
+      padding: 6px 20px;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .add-btn:hover {
+      background-color: #42d4f5;
+      color: #ffff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="head">
+      <a href="#"> <img src="https://image2url.com/r2/default/images/1775795696466-c055581b-e5e5-4386-8fe8-043853054e4c.jpg" alt="SwiftKart Logo"> 
+      <p class="head">
+          SwiftKart.com
+        </p>
+      </a>
+     
+    </div>
+    <div class="Nav-bar">
+      <div class="sorch">
+        <input type="text" class="search" placeholder="Search for groceries...">
+        <button class="buttonsearch">Search</button>
+      </div>
+    </div>
+  </header>
+  <main id="main-content">
+    <div class="cate">
+      <div class="carousel-container">
+        <ul class="box">
+          <li>
+            <a href="#">
+              <img src="https://cdn-icons-png.flaticon.com/512/2329/2329813.png" alt="Veg">
+              <span>Veggie</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="https://cdn-icons-png.flaticon.com/512/3194/3194591.png" alt="Rice">
+              <span>Grains</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="https://cdn-icons-png.flaticon.com/512/3050/3050162.png" alt="Dairy">
+              <span>Dairy</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="https://cdn-icons-png.flaticon.com/512/2907/2907321.png" alt="Fruits">
+              <span>Fruits</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="cateo">
+        <ul class="box">
+          <li>
+            <a href="#">
+              <img src="https://cdn-icons-png.flaticon.com/512/2329/2329813.png" alt="Veg">
+              <span>Veggie</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="https://cdn-icons-png.flaticon.com/512/3194/3194591.png" alt="Rice">
+              <span>Grains</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="https://cdn-icons-png.flaticon.com/512/3050/3050162.png" alt="Dairy">
+              <span>Dairy</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <img src="https://cdn-icons-png.flaticon.com/512/2907/2907321.png" alt="Fruits">
+              <span>Fruits</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="text">
+  <h3 class="deal">Today's Best Deals</h3>
+
+  <div class="carousel-container">
+    <div class="carousel-item">
+      <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c" alt="Deal 1">
+    </div>
+    <div class="carousel-itemb">
+      <img src="data:image/jpeg;base64,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" alt="Deal 2">
+    </div>
+    <div class="carousel-item">
+      <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce"
+      alt="Deal 3">
+    </div>
+  </div>
+</div>
+
+<div class="Featured">
+  <h3 class="fee">⭐ Featured Items</h3>
+
+  <div class="carousel-container">
+    <div class="carousel-item">
+      <img src="https://images.unsplash.com/photo-1506619216599-9d16d0903dfd" alt="Featured 1">
+    </div>
+    <div class="carousel-item">
+      <img src="https://images.unsplash.com/photo-1613145993483-6c9d9f70906b" alt="Featured 2">
+    </div>
+    <div class="carousel-item">
+      <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc" alt="Featured 3">
+    </div>
+  </div>
+</div>
+<div class="grocery-container">
+  <div class="grocery-card">
+    <div class="image-section">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCFdfOaQDo0dJqgMHqXJRCRkh04gONTgdHKDZIeVuc3w&s=10" alt="horlicks">
+    </a>
+    <span class="veg-icon">●</span>
+  </div>
+
+  <div class="details-section">
+    <p class="brand-name">
+      Horlicks
+    </p>
+    <h3 class="item-name">Chocolate nutrition milk drink</h3>
+    <p class="weight">
+      1 kg
+    </p>
+
+    <div class="price-box">
+      <span class="price">₹399</span>
+      <span class="mrp">₹425</span>
+    </div>
+
+    <a href="http://localhost:8158/a000001%20(1).html">
+      <button class="add-btn">SELECT</button>
+    </a>
+  </div>
+
+</div>
+<div  id="product-container" class="grocery-container">
+  <div class="grocery-card">
+    <div class="image-section">
+      <img src="https://www.jiomart.com/images/product/original/490000219/britannia-bourbon-the-original-chocolate-cream-biscuits-50-g-product-images-o490000219-p490000219-0-202512081645.jpg?im=Resize=(420,420)" alt="Fresh Tomatoes">
+      <span class="veg-icon">●</span>
+    </div>
+
+    <div class="details-section">
+      <p class="brand-name">
+        Britania
+      </p>
+      <h3 class="item-name">Burbon biscuits </h3>
+      <p class="weight">
+        50 g
+      </p>
+
+      <div class="price-box">
+        <span class="price">₹10</span>
+        <span class="mrp">₹15</span>
+      </div>
+      <a href="http://localhost:8158/c000001.html">
+        <button class="add-btn">SELECT</button>
+      </a>
+    </div>
+  </div>
+
+  <div class="grocery-card">
+    <div class="image-section">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOkpi27cLVJDMmup7h9iyagQk-FkEKx1R1CVoG5OX3NQ&s=10" alt="Aashirvaad Atta">
+      <span class="veg-icon">●</span>
+    </div>
+
+    <div class="details-section">
+      <p class="brand-name">
+        Britania
+      </p>
+      <h3 class="item-name">Cake gobbles</h3>
+
+
+      <div class="price-box">
+        <span class="price">₹9</span>
+        <span class="mrp">₹12</span>
+      </div>
+
+      <button class="add-btn">SELECT</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="grocery-card">
+  <div class="image-section">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdIqLI4Q_10lWAUlf5IEa8C6KQgP20mFS381q-_5xyhSITuOtdqBnIzPnj&s=10" alt="Aashirvaad Atta">
+    <span class="non-veg-icon">●</span>
+  </div>
+
+  <div class="details-section">
+    <p class="brand-name">
+      Everyday
+    </p>
+    <h3 class="item-name">Masala set</h3>
+    <p class="weight">
+      36g
+    </p>
+
+    <div class="price-box">
+      <span class="price">₹30</span>
+      <span class="mrp">₹40</span>
+    </div>
+<a href="http://localhost:8158/f000001.html">
+    <button class="add-btn">SELECT</button></a>
+  </div>
+</div>
+</div>
+<div class="grocery-container">
+<div class="grocery-card">
+<div class="image-section">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUUP5ZuVHGCJnnBgJCY_5ubrbEjNaS2l_L61Bwgo7SXA&s=10" alt="Fresh Tomatoes">
+</div>
+
+<div class="details-section">
+<p class="brand-name">
+eveready
+</p>
+<h3 class="item-name">AA batteris</h3>
+<p class="weight">
+pack of 2
+</p>
+
+<div class="price-box">
+<span class="price">₹35</span>
+<span class="mrp">₹40</span>
+</div>
+
+<a href="http://localhost:8158/f000002.html">
+    <button class="add-btn">SELECT</button></a>
+</div>
+</div>
+
+<div class="grocery-card">
+<div class="image-section">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8fNhTT7b-Ro15l7FwCzzo4-u38RFn7mxFW63HvCx8lA&s=10" alt="Aashirvaad Atta">
+<span class="veg-icon">●</span>
+</div>
+
+<div class="details-section">
+<p class="brand-name">
+colgate
+</p>
+<h3 class="item-name">Active salt toothpaste (PACK OF 2)  </h3>
+<p class="weight">
+68 g
+</p>
+
+<div class="price-box">
+<span class="price">₹30</span>
+<span class="mrp">₹40</span>
+</div>
+
+<a href="http://localhost:8158/f000003.html">
+    <button class="add-btn">SELECT</button></a>
+</div>
+</div>
+</div>
+<div class="grocery-container">
+<div class="grocery-card">
+<div class="image-section">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfynYOLgaBF-tRNXy031Q4TmHnCxrX4vFKwUe3FsIFIQ&s=10https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfynYOLgaBF-tRNXy031Q4TmHnCxrX4vFKwUe3FsIFIQ&s=10" alt="Fresh Tomatoes">
+<span class="veg-icon">●</span>
+</div>
+
+<div class="details-section">
+<p class="brand-name">
+rashna
+</p>
+<h3 class="item-name">orange flavor drink</h3>
+<p class="weight">
+10 g
+</p>
+
+<div class="price-box">
+<span class="price">9</span>
+<span class="mrp">₹12</span>
+</div>
+
+<a href="http://localhost:8158/a000002.html">
+    <button class="add-btn">SELECT</button></a>
+</div>
+</div>
+
+<div class="grocery-card">
+<div class="image-section">
+<img src="https://www.quickpantry.in/cdn/shop/products/aashirvaad-whole-wheat-atta-5-kg-quick-pantry.jpg?v=1710537925" alt="Aashirvaad Atta">
+<span class="veg-icon">●</span>
+</div>
+
+<div class="details-section">
+<p class="brand-name">
+Aashirvaad
+</p>
+<h3 class="item-name">Whole Wheat Atta</h3>
+<p class="weight">
+5 kg
+</p>
+
+<div class="price-box">
+<span class="price">₹499</span>
+<span class="mrp">₹669</span>
+</div>
+<a href="http://localhost:8158/f000004.html">
+<button class="add-btn">SELECT</button></a>
+</div>
+</div>
+</div>
+<div class="grocery-container">
+<div class="grocery-card">
+<div class="image-section">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzQb1HPKZ03JMo_HxEuD7lcUxEpYD_HNYYwj_X4NSX0A&s" alt="Fresh Tomatoes">
+<span class="veg-icon">●</span>
+</div>
+
+<div class="details-section">
+<p class="brand-name">
+maggi
+</p>
+<h3 class="item-name">2 min noodles</h3>
+<p class="weight">
+140 g
+</p>
+
+<div class="price-box">
+<span class="price">₹24</span>
+<span class="mrp">₹28</span>
+</div>
+
+<a href="http://localhost:8158/c000003.html">
+    <button class="add-btn">SELECT</button></a>
+</div>
+</div>
+<div class="grocery-card">
+<div class="image-section">
+<img src="https://www.jiomart.com/images/product/original/494354710/britannia-treat-choco-cream-biscuit-515-g-product-images-o494354710-p608147803-0-202402231548.jpg?im=Resize=(1000,1000)" alt="biscuits">
+<span class="veg-icon">●</span>
+</div>
+
+<div class="details-section">
+<p class="brand-name">
+Britania
+</p>
+<h3 class="item-name">TREAT Choco Creme Sandwich Biscuits</h3>
+<p class="weight">
+515 g
+</p>
+
+<div class="price-box">
+<span class="price">₹69</span>
+<span class="mrp">₹75</span>
+</div>
+
+<a href="http://localhost:8158/f000007.html">
+    <button class="add-btn">SELECT</button></a>
+</div>
+</div>
+</div>
+
+</main>
+
+<footer>
+<div class="navbarfooter">
+<nav class="navbartext">
+<ul>
+<li class="lia"><a href="http://localhost:8158/food.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIifF9GgvosnzUjrNbaEdRKrfdSXeJb3AVIvEqqmftLw&s=10" alt="FOOD"></a></li>
+<li class="liam"><a href="http://localhost:8158/groceries.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTaIOyq3AWzuvn8S6iOrGFZ1Jnv1AD_hRwaFgq1qV-Rw&s=10" alt="GROCERIES"></a></li>
+<li class="lia"><a href="http://localhost:8158/home.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf-JMvr3Uh9DTltPNMHu83lnVTq86Lq2IdIZbq-BMBNw&s=10" alt="HOME"></a></li>
+<li class="lia"><a href="http://localhost:8158/maintain.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbxXVu7mGdIJJRr-Em0fG6TOXqomec17mzzjTPtllZQ9wl9Ypo3zygIY0&s=10" alt="ACCESSORIES"></a></li>
+<li class="lia"><a href="http://localhost:8158/setting.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrRfHJty5oxy8Lcc8YThpGKHkpFCEe01kS7ylGVxMaoQ&s=10" alt="SETTING"></a></li>
+</ul>
+</nav>
+</div>
+</footer>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. PRODUCT DATABASE
+    const allProducts = [
+        { name: "Chocolate nutrition milk drink", brand: "Horlicks", weight: "1 kg", price: "399", mrp: "425", icon: "veg", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCFdfOaQDo0dJqgMHqXJRCRkh04gONTgdHKDZIeVuc3w&s=10", link: "http://localhost:8158/a000001%20(1).html" },
+        { name: "Burbon biscuits", brand: "Britania", weight: "50 g", price: "10", mrp: "15", icon: "veg", img: "https://www.jiomart.com/images/product/original/490000219/britannia-bourbon-the-original-chocolate-cream-biscuits-50-g-product-images-o490000219-p490000219-0-202512081645.jpg?im=Resize=(420,420)", link: "http://localhost:8158/c000001.html" },
+        { name: "AA batteries", brand: "Eveready", weight: "Pack of 2", price: "35", mrp: "40", icon: "none", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUUP5ZuVHGCJnnBgJCY_5ubrbEjNaS2l_L61Bwgo7SXA&s=10", link: "http://localhost:8158/f000002.html" },
+        { name: "2 min noodles", brand: "Maggi", weight: "140 g", price: "24", mrp: "28", icon: "veg", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzQb1HPKZ03JMo_HxEuD7lcUxEpYD_HNYYwj_X4NSX0A&s", link: "http://localhost:8158/c000003.html" },
+        { name: "Cake gobbles", brand: "Britania", weight: "Pack of 1", price: "9", mrp: "12", icon: "veg", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOkpi27cLVJDMmup7h9iyagQk-FkEKx1R1CVoG5OX3NQ&s=10", link: "#" },
+        { name: "Masala set", brand: "Everyday", weight: "36g", price: "30", mrp: "40", icon: "non-veg", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdIqLI4Q_10lWAUlf5IEa8C6KQgP20mFS381q-_5xyhSITuOtdqBnIzPnj&s=10", link: "http://localhost:8158/f000001.html" }
+         { name: "Chocolate nutrition milk drink", brand: "Horlicks", weight: "1 kg", price: "399", mrp: "425", icon: "veg", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCFdfOaQDo0dJqgMHqXJRCRkh04gONTgdHKDZIeVuc3w&s=10", link: "http://localhost:8158/a000001%20(1).html" },
+        { name: "Burbon biscuits", brand: "Britania", weight: "50 g", price: "10", mrp: "15", icon: "veg", img: "https://www.jiomart.com/images/product/original/490000219/britannia-bourbon-the-original-chocolate-cream-biscuits-50-g-product-images-o490000219-p490000219-0-202512081645.jpg?im=Resize=(420,420)", link: "http://localhost:8158/c000001.html" },
+        { name: "AA batteries", brand: "Eveready", weight: "Pack of 2", price: "35", mrp: "40", icon: "none", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUUP5ZuVHGCJnnBgJCY_5ubrbEjNaS2l_L61Bwgo7SXA&s=10", link: "http://localhost:8158/f000002.html" },
+        { name: "2 min noodles", brand: "Maggi", weight: "140 g", price: "24", mrp: "28", icon: "veg", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzQb1HPKZ03JMo_HxEuD7lcUxEpYD_HNYYwj_X4NSX0A&s", link: "http://localhost:8158/c000003.html" },
+        { name: "Cake gobbles", brand: "Britania", weight: "Pack of 1", price: "9", mrp: "12", icon: "veg", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOkpi27cLVJDMmup7h9iyagQk-FkEKx1R1CVoG5OX3NQ&s=10", link: "#" },
+        
+    ];
+
+    const mainContent = document.getElementById('main-content');
+    const homePageHTML = mainContent.innerHTML; // Save static home content
+
+    // Use delegation for the search button so it works even after "Back to Home"
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('buttonsearch')) {
+            performSearch();
+        }
+        if (e.target.id === 'back-home') {
+            restoreHome();
+        }
+    });
+
+    // Listen for "Enter" key in the search input
+    document.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && e.target.classList.contains('search')) {
+            performSearch();
+        }
+    });
+
+        function performSearch() {
+        const searchInput = document.querySelector('.search');
+        // Clean the input: lowercase it and split into an array of words
+        const query = searchInput.value.toLowerCase().trim();
+        const searchWords = query.split(/\s+/); // Splits by spaces
+        
+        if (query === "") return;
+
+        // Filter: Every word in the search must be found in the Name OR Brand
+        const results = allProducts.filter(product => {
+            const productTitle = product.name.toLowerCase();
+            const productBrand = product.brand.toLowerCase();
+            const combinedText = `${productBrand} ${productTitle}`;
+
+            // This checks if EVERY word you typed exists somewhere in the product info
+            return searchWords.every(word => combinedText.includes(word));
+        });
+
+        renderResults(results, query);
+    }
+
+
+    function renderResults(results, query) {
+        let resultsHTML = `
+            <div style="padding: 20px;">
+                <button id="back-home" style="margin-bottom:20px; padding:10px 20px; border-radius:10px; border:none; background:#1976d2; color:white; font-weight:bold; cursor:pointer;">← Back to Home</button>
+                <h3 style="margin-bottom:20px; color:#333;">Results for "${query}"</h3>
+                <div class="grocery-container">
+        `;
+
+        if (results.length === 0) {
+            resultsHTML += `<p style="text-align:center; width:100%; padding:20px;">No items found. Try another search!</p>`;
+        } else {
+            results.forEach(product => {
+                const iconClass = product.icon === 'veg' ? 'veg-icon' : 'non-veg-icon';
+                const showIcon = product.icon !== 'none' ? `<span class="${iconClass}">●</span>` : '';
+                
+                resultsHTML += `
+                    <div class="grocery-card">
+                        <div class="image-section">
+                            <img src="${product.img}" alt="${product.name}">
+                            ${showIcon}
+                        </div>
+                        <div class="details-section">
+                            <p class="brand-name">${product.brand}</p>
+                            <h3 class="item-name">${product.name}</h3>
+                            <p class="weight">${product.weight}</p>
+                            <div class="price-box">
+                                <span class="price">₹${product.price}</span>
+                                <span class="mrp">₹${product.mrp}</span>
+                            </div>
+                            <a href="${product.link}"><button class="add-btn">SELECT</button></a>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        resultsHTML += `</div></div>`;
+        mainContent.innerHTML = resultsHTML;
+        window.scrollTo(0, 0); // Scroll to top when showing results
+    }
+
+    function restoreHome() {
+        mainContent.innerHTML = homePageHTML;
+        const searchInput = document.querySelector('.search');
+        if (searchInput) searchInput.value = "";
+    }
+});
+
+</script>  
+
+
+</body>
+</html>

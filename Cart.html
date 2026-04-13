@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swift Kart | Amazon Style</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<style>* { box-sizing: border-box; margin: 0; padding: 0; font-family: "Segoe UI", Roboto, sans-serif; }
+
+body { background-color: #EAEDED; color: #0F1111; }
+.hidden { display: none !important; }
+.container { max-width: 500px; margin: 0 auto; min-height: 100vh; background: #fff; }
+
+/* Amazon Style Headers */
+.amazon-header { padding: 15px; border-bottom: 1px solid #ddd; }
+.cart-header { background: #232f3e; color: white; padding: 12px; display: flex; align-items: center; }
+.logo { font-weight: bold; font-size: 1.2rem; margin-left: 15px; }
+
+/* Address Form */
+.form-card { padding: 20px; }
+label { display: block; font-weight: bold; font-size: 0.9rem; margin-bottom: 5px; }
+input { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #888; border-radius: 3px; }
+
+/* Delivery Bar */
+.delivery-bar { background: #37475a; color: white; padding: 10px 15px; font-size: 0.85rem; display: flex; align-items: center; cursor: pointer; }
+#display-address-text { flex: 1; margin-left: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Product Card */
+.cart-item { padding: 15px; border-bottom: 8px solid #EAEDED; }
+.item-details { display: flex; gap: 15px; }
+.title { font-size: 0.95rem; line-height: 1.3; margin-bottom: 4px; }
+.price { font-size: 1.3rem; font-weight: 500; }
+.price sup { font-size: 0.7rem; top: -0.4em; }
+.stock-status { color: #007600; font-size: 0.8rem; margin: 4px 0; }
+.qty-selector { display: inline-block; padding: 5px 10px; border: 1px solid #D5D9D9; border-radius: 8px; background: #F0F2F2; font-size: 0.8rem; margin: 10px 0; }
+
+.item-actions { display: flex; gap: 10px; margin-top: 10px; }
+.item-actions button { background: white; border: 1px solid #D5D9D9; padding: 6px 12px; border-radius: 8px; font-size: 0.75rem; box-shadow: 0 2px 5px rgba(15,17,17,.15); }
+
+/* Buttons */
+.amazon-btn-yellow {
+    width: 100%;
+    background: #FFD814;
+    border: 1px solid #FCD200;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(213,217,217,.5);
+    margin-top: 10px;
+}
+
+.subtotal-section { padding: 20px; text-align: left; }
+</style>
+    
+<div id="address-view" class="container">
+    <div class="amazon-header">
+        <h2>Enter delivery details</h2>
+    </div>
+    <div class="form-card">
+        <label>Full name</label>
+        <input type="text" id="nameInput" placeholder="First and Last name">
+        
+        <label>Pincode</label>
+        <input type="text" id="pinInput" placeholder="6-digit Pincode" maxlength="6">
+        
+        <label>Flat, House no., Building</label>
+        <input type="text" id="houseInput" placeholder="House/Flat No.">
+
+        <button class="amazon-btn-yellow" onclick="handleSaveAddress()">Save and Continue</button>
+    </div>
+</div>
+
+    <div id="cart-view" class="container hidden">
+        <header class="cart-header">
+            <span class="back-arrow">‹</span>
+            <span class="logo">Swift Kart</span>
+        </header>
+
+        <div class="delivery-bar" onclick="triggerAddressChange()">
+            <span class="pin-icon">📍</span>
+            <div id="display-address-text">Select a delivery location</div>
+            <span class="chevron">›</span>
+        </div>
+
+        <div class="cart-item">
+            <div class="item-details">
+                <img src="https://via.placeholder.com/100" alt="Product">
+                <div class="item-info">
+                    <p class="title">KENNEDE KN-6651 2in1 Rechargeable...</p>
+                    <p class="price"><sup>₹</sup><span>303</span></p>
+                    <p class="stock-status">In stock</p>
+                    <p class="shipping">Eligible for FREE Shipping</p>
+                </div>
+            </div>
+            <div class="qty-selector">Qty: 1 ▾</div>
+            <div class="item-actions">
+                <button>Delete</button>
+                <button>Save for later</button>
+                <button>See more like this</button>
+            </div>
+        </div>
+
+        <div class="subtotal-section">
+            <p>Subtotal (1 item): <strong>₹303.00</strong></p>
+            <button class="amazon-btn-yellow">Proceed to Buy</button>
+        </div>
+    </div>
+
+   <script>
+     document.addEventListener('DOMContentLoaded', checkUserStatus);
+
+// Function to check if user has already saved an address
+function checkUserStatus() {
+    const savedData = localStorage.getItem('swiftKartAddress');
+    const addressView = document.getElementById('address-view');
+    const cartView = document.getElementById('cart-view');
+
+    if (savedData) {
+        const user = JSON.parse(savedData);
+        addressView.style.display = 'none';
+        cartView.style.display = 'block';
+
+        // Display the fetched city and pin in the Cart bar
+        document.getElementById('display-address-text').innerHTML = 
+            `Delivery at <strong>${user.city} - ${user.pin}</strong>`;
+    } else {
+        addressView.style.display = 'block';
+        cartView.style.display = 'none';
+    }
+}
+
+// Function to save address and fetch API data
+async function handleSaveAddress() {
+    const name = document.getElementById('nameInput').value.trim();
+    const pin = document.getElementById('pinInput').value.trim();
+    const house = document.getElementById('houseInput').value.trim();
+
+    if (!name || pin.length !== 6 || !house) {
+        alert("Please fill in all details correctly.");
+        return;
+    }
+
+    try {
+        // Fetching location details from the Pincode API
+        const response = await fetch(`https://api.postalpincode.in/pincode/${pin}`);
+        const data = await response.json();
+
+        let city = "India"; // Default if not found
+
+        if (data[0].Status === "Success") {
+            // This will get 'Baithalangso' for 782450
+            city = data[0].PostOffice[0].Name; 
+        }
+
+        const userData = { name, pin, house, city };
+        localStorage.setItem('swiftKartAddress', JSON.stringify(userData));
+        
+        checkUserStatus(); // Switch to cart view
+
+    } catch (error) {
+        console.error("API Error:", error);
+        // Save anyway with default city if API fails
+        localStorage.setItem('swiftKartAddress', JSON.stringify({ name, pin, house, city: "India" }));
+        checkUserStatus();
+    }
+}
+
+function triggerAddressChange() {
+    if (confirm("Change delivery address?")) {
+        localStorage.removeItem('swiftKartAddress');
+        location.reload();
+    }
+}
+
+   </script>
+</body>
+</html>
