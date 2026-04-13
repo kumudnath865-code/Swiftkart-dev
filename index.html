@@ -2,134 +2,80 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Swift Kart</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"itle>Swift Kart</title>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial;
+
+        body {
+    background-color: #F0F2F2;
+    font-family: 'Arial', sans-serif;
+    color: #0F1111;
 }
 
-body{
-  background: linear-gradient(180deg, #b2f7eb, #4eb9f2);
+.cart-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    gap: 20px;
 }
 
-/* NAVBAR */
-.navbar{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:10px 20px;
-  background: linear-gradient(90deg,#b2f7eb,#4eb9f2);
-  box-shadow:0 2px 10px rgba(0,0,0,0.2);
+.cart-main {
+    flex: 3;
+    background: white;
+    padding: 20px;
 }
 
-.logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
+.cart-sidebar {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    height: fit-content;
 }
 
-.logo img{
-  height:50px;
-  border-radius:50%;
+.cart-item {
+    display: flex;
+    padding: 15px 0;
+    border-bottom: 1px solid #DDD;
 }
 
-.logo span{
-  font-weight:bold;
-  font-size:18px;
-  color:#000;
+.item-img img { width: 150px; height: auto; }
+
+.item-details { flex: 2; padding: 0 20px; }
+
+.stock-status { color: #007600; font-size: 12px; }
+
+.qty-dropdown {
+    background: #F0F2F2;
+    border-radius: 8px;
+    border: 1px solid #D5D9D9;
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(15,17,17,.15);
 }
 
-/* SEARCH BAR */
-.search-box{
-  display:flex;
-  justify-content:center;
-  padding:15px;
+.text-btn {
+    background: none;
+    border: none;
+    color: #007185;
+    cursor: pointer;
+    font-size: 12px;
 }
 
-.search-box input{
-  width:70%;
-  padding:10px;
-  border-radius:20px 0 0 20px;
-  border:none;
+.text-btn:hover { text-decoration: underline; color: #C7511F; }
+
+.checkout-btn {
+    background-color: #FF9900; /* Swift Orange */
+    border: none;
+    border-radius: 20px;
+    width: 100%;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
-.search-box button{
-  padding:10px 20px;
-  border:none;
-  background:#ffce32;
-  border-radius:0 20px 20px 0;
-  cursor:pointer;
-}
+.checkout-btn:hover { background-color: #FFB33E; }
 
-/* CATEGORIES */
-.categories{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:10px;
-  padding:10px;
-}
-
-.categories a{
-  padding:5px 10px;
-  background:#fff;
-  border-radius:10px;
-  text-decoration:none;
-  color:#000;
-}
-
-/* PRODUCTS */
-.main{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
-  gap:10px;
-  padding:10px;
-}
-
-.card{
-  background:#fff;
-  height:130px;
-  border-radius:10px;
-  overflow:hidden;
-}
-
-.card img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-/* FOOTER NAV */
-.footer{
-  position:fixed;
-  bottom:0;
-  width:100%;
-  background:#111;
-}
-
-.footer ul{
-  display:flex;
-  justify-content:space-around;
-  padding:10px;
-}
-
-.footer a{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:50px;
-  height:50px;
-  border-radius:50%;
-}
-
-.footer img{
-  width:25px;
-}
+    
 </style>
 </head>
 
